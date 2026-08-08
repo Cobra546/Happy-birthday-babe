@@ -1,7 +1,7 @@
 const $=s=>document.querySelector(s);const sections=[...document.querySelectorAll('.section')];
-// Access lock: before 2 June, add ?test to the URL for the test version.
-const birthdayMonth=6,birthdayDay=2;const params=new URLSearchParams(location.search);const isTest=params.has('test');const now=new Date();const birthdayStart=new Date(now.getFullYear(),birthdayMonth-1,birthdayDay);const accessAllowed=now>=birthdayStart||isTest;
-function lockSite(){document.body.innerHTML=`<main style="min-height:100vh;display:grid;place-items:center;padding:28px;text-align:center;font-family:Inter,Arial,sans-serif;background:#0b0b12;color:#fff"><div><div style="font-size:64px">🔒</div><h1>Birthday Surprise Locked</h1><p style="opacity:.75">This birthday experience unlocks on <b>2 June</b> 🎂</p></div></main>`;throw new Error('Birthday site locked');}
+// Before the next 2 June, normal URL is locked. Add ?test to preview it anytime.
+const birthdayMonth=6,birthdayDay=2;const params=new URLSearchParams(location.search);const isTest=params.has('test');const now=new Date();let birthdayStart=new Date(now.getFullYear(),birthdayMonth-1,birthdayDay);if(now>=birthdayStart)birthdayStart.setFullYear(birthdayStart.getFullYear()+1);const accessAllowed=now>=birthdayStart||isTest;
+function lockSite(){document.body.innerHTML=`<main style="min-height:100vh;display:grid;place-items:center;padding:28px;text-align:center;font-family:Inter,Arial,sans-serif;background:#0b0b12;color:#fff"><div><div style="font-size:64px">🔒</div><h1>Birthday Surprise Locked</h1><p style="opacity:.75">This birthday experience unlocks on <b>2 June</b> 🎂</p><p style="opacity:.5;font-size:13px">Test version: add <b>?test</b> to the URL</p></div></main>`;throw new Error('Birthday site locked');}
 if(!accessAllowed)lockSite();
 function show(id){sections.forEach(x=>x.classList.toggle('active',x.id===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='letter')typeLetter();}
 $('#startBtn').onclick=()=>show('intro');document.querySelectorAll('.next-btn').forEach(b=>b.onclick=()=>show(b.dataset.next));
