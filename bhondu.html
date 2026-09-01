@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Birthday Wishes — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#090811;--card:rgba(255,255,255,.07);--text:#f8f3f5;--muted:#aaa2ae;--accent:#ff6f91;--accent2:#b58cff;--line:rgba(255,255,255,.12)}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#30203e,#090811 55%);color:var(--text);font-family:Inter,sans-serif}.wrap{width:min(920px,100%);margin:auto;padding:50px 20px}.panel{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px;backdrop-filter:blur(18px);box-shadow:0 20px 70px #0006}.login{max-width:440px;margin:12vh auto}.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:700;color:var(--accent)}h1{font:700 clamp(42px,10vw,70px)/.9 'Cormorant Garamond',serif;margin:8px 0 18px}h1 span{background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}.sub{color:var(--muted);line-height:1.7}input{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:#0003;color:var(--text);font:14px Inter;margin:7px 0;outline:none}input:focus{border-color:var(--accent)}button{border:0;border-radius:999px;padding:13px 18px;background:linear-gradient(120deg,var(--accent),var(--accent2));color:#fff;font:700 13px Inter;cursor:pointer}button:disabled{opacity:.6;cursor:wait}.actions{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:18px 0}.ghost{background:transparent;border:1px solid var(--line)}.error{color:#ff9db3;font-size:13px;min-height:20px}.stats{color:var(--muted);font-size:13px}.wish{margin:12px 0;padding:20px;border:1px solid var(--line);border-radius:20px;background:rgba(0,0,0,.12)}.wish-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.number{font-weight:700;color:var(--accent)}time{font-size:11px;color:var(--muted)}.wish-text{white-space:pre-wrap;line-height:1.7;color:#eee7ec;word-break:break-word}.empty{text-align:center;padding:50px 20px;color:var(--muted)}#app{display:none}.top{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:22px}@media(max-width:600px){.wrap{padding:28px 14px}.panel{padding:20px}.top{align-items:start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div id="login" class="wrap">
+    <div class="panel login">
+      <div class="eyebrow">Private area 🔐</div>
+      <h1>Birthday <span>Wishes</span></h1>
+      <p class="sub">Admin login required. This page is intentionally not linked from the birthday site.</p>
+      <input id="email" type="email" placeholder="Admin email" autocomplete="username">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+      <button id="loginBtn">Login →</button>
+      <p id="loginError" class="error"></p>
+    </div>
+  </div>
+
+  <div id="app" class="wrap">
+    <div class="top">
+      <div><div class="eyebrow">Keeno's Birthday</div><h1>Wish <span>Inbox</span> 💌</h1><div id="stats" class="stats">Loading…</div></div>
+      <button id="logoutBtn" class="ghost">Log out</button>
+    </div>
+    <div class="panel"><div id="wishes"><div class="empty">Loading wishes…</div></div></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL='https://bhtyestavehwaymfozxw.supabase.co';
+    const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJodHllc3RhdmVod2F5bWZvenh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU4NDkwODksImV4cCI6MjEwMTQyNTA4OX0.4-8U1fe5LQVTsuFa1kgc8A1PQeBQrh_UTibZsmApPrQ';
+    const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+    const $=id=>document.getElementById(id);
+    async function loadWishes(){
+      const {data,error}=await db.from('birthday_wishes').select('id,wish,created_at').order('id',{ascending:true});
+      if(error){$('wishes').innerHTML='<div class="empty">Could not load wishes. Check the RLS policy.</div>';console.error(error);return;}
+      $('stats').textContent=`${data.length} wish${data.length===1?'':'es'} received`;
+      if(!data.length){$('wishes').innerHTML='<div class="empty">No wishes yet 💌<br>They will appear here as people submit them.</div>';return;}
+      $('wishes').innerHTML=data.map((x,i)=>`<article class="wish"><div class="wish-head"><span class="number">${i+1}${i===0?'st':i===1?'nd':i===2?'rd':'th'} Wish</span><time>${new Date(x.created_at).toLocaleString()}</time></div><div class="wish-text">${escapeHtml(x.wish)}</div></article>`).join('');
+    }
+    function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+    async function showSession(){
+      const {data}=await db.auth.getSession();
+      if(data.session){$('login').style.display='none';$('app').style.display='block';loadWishes();}else{$('login').style.display='block';$('app').style.display='none';}
+    }
+    $('loginBtn').onclick=async()=>{const email=$('email').value.trim(),password=$('password').value;if(!email||!password){$('loginError').textContent='Enter email and password.';return;}$('loginBtn').disabled=true;$('loginError').textContent='';const {error}=await db.auth.signInWithPassword({email,password});if(error)$('loginError').textContent=error.message;$('loginBtn').disabled=false;if(!error)showSession();};
+    $('logoutBtn').onclick=async()=>{await db.auth.signOut();showSession();};
+    db.auth.onAuthStateChange(()=>showSession());
+    showSession();
+  </script>
+</body>
+</html>
