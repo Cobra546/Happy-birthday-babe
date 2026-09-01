@@ -70,7 +70,13 @@
     <section class="section" id="wishes">
       <p class="eyebrow">Final Chapter</p>
       <h2>Make a wish, Keeno ⭐</h2>
-      <p class="body-copy">Close your eyes, make a wish, and tap the button when you're ready.</p>
+      <p class="body-copy">Close your eyes, make a wish, then write it below. Your wish will be saved privately for the birthday surprise. 💌</p>
+      <div class="wish-card">
+        <textarea id="wishInput" maxlength="1000" placeholder="Write your birthday wish here..." aria-label="Birthday wish"></textarea>
+        <div class="wish-meta"><span>Max 1000 characters</span><span id="wishCount">0/1000</span></div>
+        <button class="primary" id="wishBtn">💌 Send My Wish</button>
+        <p class="wish-status" id="wishStatus" role="status"></p>
+      </div>
       <button class="primary" id="finalBtn">🎆 Reveal the Finale</button>
     </section>
 
@@ -89,6 +95,7 @@
 
   <div class="toast" id="toast" role="status"></div>
   <canvas id="cardCanvas" width="1080" height="1350" hidden></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
 </body>
 </html>
