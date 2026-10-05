@@ -49,17 +49,38 @@
       <button class="secondary next-btn" data-next="memories">Continue ✨</button>
     </section>
 
-    <section class="section" id="memories">
-      <p class="eyebrow">Chapter Two</p>
-      <h2>Little moments 📸</h2>
-      <p class="body-copy">Add your favorite photos of Keeno here later. For now, these cards are ready for your memories.</p>
-      <div class="memory-grid">
-        <div class="memory-card"><div class="placeholder">📷</div><span>Memory One</span></div>
-        <div class="memory-card"><div class="placeholder">💫</div><span>Memory Two</span></div>
-        <div class="memory-card"><div class="placeholder">🌙</div><span>Memory Three</span></div>
-        <div class="memory-card"><div class="placeholder">❤️</div><span>Memory Four</span></div>
+    <section class="section memories-section" id="memories">
+      <div class="memory-intro" id="memoryIntro" aria-hidden="true">
+        <div class="memory-intro-text">4 favorite days of my life</div>
       </div>
-      <button class="secondary next-btn" data-next="game">Next chapter →</button>
+      <div class="memory-content" id="memoryContent">
+        <p class="eyebrow">Chapter Two</p>
+        <h2>Little moments 📸</h2>
+        <p class="body-copy">Four days that became some of the most special dates in my life.</p>
+        <div class="memory-grid">
+          <div class="memory-card">
+            <div class="memory-title">the day you born</div>
+            <div class="placeholder">🎂</div>
+            <span>02/06/2011</span>
+          </div>
+          <div class="memory-card">
+            <div class="memory-title">the day you met me</div>
+            <div class="placeholder">✨</div>
+            <span>05/04/2019</span>
+          </div>
+          <div class="memory-card">
+            <div class="memory-title">the day you talk me</div>
+            <div class="placeholder">💬</div>
+            <span>11/02/2025</span>
+          </div>
+          <div class="memory-card">
+            <div class="memory-title">the day you come into my life</div>
+            <div class="placeholder">❤️</div>
+            <span>27/05/2025</span>
+          </div>
+        </div>
+        <button class="secondary next-btn" data-next="game">Next chapter →</button>
+      </div>
     </section>
 
     <section class="section" id="game">
