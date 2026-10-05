@@ -47,3 +47,15 @@
 @keyframes lockCardIn{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:none}}@keyframes lockFloat{0%,100%{transform:translate(-50%,0);opacity:.45}50%{transform:translate(-50%,-6px);opacity:.75}}
 body.light .birthday-lock{background:radial-gradient(circle at 50% 10%,#f2dfe3,transparent 38%),linear-gradient(145deg,#f4efec,#e7dfe4)}body.light .birthday-lock::before{opacity:.08}.birthday-lock *{box-sizing:border-box}
 @media(max-width:360px){.lock-card{padding-left:18px;padding-right:18px}.lock-countdown{font-size:24px}.lock-copy{font-size:12px}}
+
+/* Animated lock countdown cards */
+.lock-countdown{display:flex;align-items:center;justify-content:center;gap:7px;font-family:Inter,sans-serif;white-space:nowrap}
+.lock-time-group{display:flex;align-items:center;gap:5px}
+.lock-time-card{width:58px;height:66px;display:grid;place-items:center;border-radius:16px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));box-shadow:inset 0 1px rgba(255,255,255,.08),0 10px 25px rgba(0,0,0,.18)}
+.lock-time-card strong{font-family:'Cormorant Garamond',serif;font-size:38px;line-height:1;color:#fff;text-shadow:0 0 22px rgba(201,107,120,.3)}
+.lock-time-card small{display:block;font-family:Inter,sans-serif;font-size:7px;color:#988a90;letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.lock-time-sep{font-family:'Cormorant Garamond',serif;color:#c96b78;font-size:25px;opacity:.8;margin-top:-8px}
+.lock-digit.flip{animation:lockDigitFlip .38s ease both}
+@keyframes lockDigitFlip{0%{transform:translateY(-7px) rotateX(70deg);opacity:.25}55%{transform:translateY(2px) rotateX(-8deg);opacity:1}100%{transform:none}}
+@media(max-width:390px){.lock-time-card{width:51px;height:61px}.lock-time-card strong{font-size:34px}.lock-time-group{gap:4px}.lock-time-sep{font-size:22px}}
+@media(max-width:340px){.lock-time-card{width:45px;height:57px}.lock-time-card strong{font-size:31px}}
