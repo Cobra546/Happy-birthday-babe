@@ -12,7 +12,21 @@ if(now>=birthdayStart)birthdayStart.setFullYear(birthdayStart.getFullYear()+1);
 const accessAllowed=now>=birthdayStart||isTest;
 function lockSite(){document.body.innerHTML=`<main style="min-height:100vh;display:grid;place-items:center;padding:28px;text-align:center;font-family:Inter,Arial,sans-serif;background:#0b0b12;color:#fff"><div style="max-width:520px;width:100%"><div style="font-size:64px">🔒</div><h1>Keeno's Birthday Surprise</h1><p style="opacity:.8;font-size:18px">The birthday experience will open on <b>2 June</b> 🎂</p><div id="lockCountdown" style="margin:28px 0;font-size:24px;font-weight:700;letter-spacing:.5px">Calculating...</div><p style="opacity:.55;font-size:13px">Come back when the countdown reaches zero ✨</p></div></main>`;const el=document.getElementById('lockCountdown');function updateLock(){const left=birthdayStart-new Date();if(left<=0){location.reload();return;}let total=Math.floor(left/1000);const days=Math.floor(total/86400);total%=86400;const hours=Math.floor(total/3600);total%=3600;const minutes=Math.floor(total/60);const seconds=total%60;el.textContent=`${days} Days • ${hours} Hours • ${minutes} Minutes • ${seconds} Seconds`;}updateLock();setInterval(updateLock,1000);throw new Error('Birthday site locked');}
 if(!accessAllowed)lockSite();
-function show(id){sections.forEach(x=>x.classList.toggle('active',x.id===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='letter')typeLetter();}
+function show(id){
+  sections.forEach(x=>x.classList.toggle('active',x.id===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='memories')playMemoryIntro();
+  if(id==='letter')typeLetter();
+}
+function playMemoryIntro(){
+  const intro=$('#memoryIntro'),content=$('#memoryContent');
+  if(!intro||!content)return;
+  intro.classList.remove('active');
+  content.classList.remove('reveal');
+  void intro.offsetWidth;
+  intro.classList.add('active');
+  setTimeout(()=>content.classList.add('reveal'),2350);
+}
 $('#startBtn').onclick=()=>show('intro');document.querySelectorAll('.next-btn').forEach(b=>b.onclick=()=>show(b.dataset.next));
 const saved=localStorage.getItem('birthday-theme')||'dark';document.body.className=saved;$('#themeToggle').textContent=saved==='dark'?'☀️':'🌙';$('#themeToggle').onclick=()=>{const light=document.body.classList.contains('light');document.body.className=light?'dark':'light';localStorage.setItem('birthday-theme',document.body.className);$('#themeToggle').textContent=light?'☀️':'🌙';};
 function tick(){const now=new Date();let target=new Date(now.getFullYear(),birthdayMonth-1,birthdayDay);if(target<now)target.setFullYear(target.getFullYear()+1);let d=target-now;const days=Math.floor(d/86400000);d%=86400000;const h=Math.floor(d/3600000);d%=3600000;const m=Math.floor(d/60000);const s=Math.floor((d%60000)/1000);const units={days:String(days).padStart(2,'0'),hours:String(h).padStart(2,'0'),minutes:String(m).padStart(2,'0'),seconds:String(s).padStart(2,'0')};Object.entries(units).forEach(([unit,value])=>{const el=document.querySelector('[data-unit="'+unit+'"]');if(el&&el.textContent!==value){el.textContent=value;el.animate([{transform:'translateY(-3px)',opacity:.65},{transform:'translateY(0)',opacity:1}],{duration:220,easing:'ease-out'});}});}tick();setInterval(tick,1000);
