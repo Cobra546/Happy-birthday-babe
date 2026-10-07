@@ -125,3 +125,14 @@ body.light .birthday-lock{background:radial-gradient(circle at 50% 10%,#f2dfe3,t
 @keyframes lockDigitFlip{0%{transform:translateY(-7px) rotateX(70deg);opacity:.25}55%{transform:translateY(2px) rotateX(-8deg);opacity:1}100%{transform:none}}
 @media(max-width:390px){.lock-time-card{width:51px;height:61px}.lock-time-card strong{font-size:34px}.lock-time-group{gap:4px}.lock-time-sep{font-size:22px}}
 @media(max-width:340px){.lock-time-card{width:45px;height:57px}.lock-time-card strong{font-size:31px}}
+
+/* Heart catcher game */
+.heart-catcher{min-height:390px;padding:18px 14px 20px;touch-action:none}
+.heart-catcher .game-score{position:relative;z-index:5;margin:0 0 4px}
+.game-hint{position:relative;z-index:5;color:#8f8589;font-size:11px;margin-bottom:8px}
+.heart-field{position:absolute;left:12px;right:12px;top:72px;bottom:18px;border-radius:20px;overflow:hidden;background:radial-gradient(circle at 50% 20%,rgba(201,107,120,.13),transparent 48%),rgba(7,7,10,.28);border:1px solid rgba(255,255,255,.06);touch-action:none}
+.basket{position:absolute;z-index:6;bottom:27px;left:50%;transform:translateX(-50%);width:76px;height:48px;display:grid;place-items:center;border-radius:0 0 22px 22px;background:linear-gradient(145deg,#b7896b,#7a5849);border:2px solid rgba(255,255,255,.16);box-shadow:0 10px 22px rgba(0,0,0,.3);font-size:34px;cursor:grab;user-select:none;touch-action:none;transition:left .08s ease}
+.basket:active{cursor:grabbing}.basket:focus{outline:2px solid var(--accent);outline-offset:3px}
+.falling-heart{position:absolute;z-index:4;left:0;top:0;font-size:30px;line-height:1;pointer-events:none;filter:drop-shadow(0 5px 8px rgba(0,0,0,.25))}
+.heart-catcher #gameStart{position:relative;z-index:7;margin-top:9px}
+@media(min-width:700px){.heart-catcher{min-height:430px}.heart-field{top:72px}.basket{bottom:27px}}
