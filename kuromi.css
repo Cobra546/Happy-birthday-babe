@@ -261,3 +261,30 @@ body.light .scrapbook-page{background:linear-gradient(90deg,#fff9ff 1px,transpar
 body.light .kuromi-photo-sticker{opacity:.12}
 @media(max-width:600px){.kuromi-photo-sticker{width:58px;opacity:.12}.ks-one{left:-13px;top:18%}.ks-two{right:-15px;top:34%}.ks-three{left:-16px;top:62%}.ks-four{right:-15px;top:79%}.ks-five{left:43%;top:8%;width:46px}}
 @media(prefers-reduced-motion:reduce){.kuromi-photo-sticker{animation:none}}
+
+
+/* Visible Kuromi photo stickers on the scrapbook corners + scattered through the story */
+.scrapbook-page{isolation:isolate}
+.scrapbook-kuromi-corners{position:absolute;inset:0;z-index:5;pointer-events:none}
+.scrap-kuromi{position:absolute;width:clamp(64px,10vw,112px);height:auto;object-fit:contain;filter:drop-shadow(0 6px 5px rgba(0,0,0,.42));}
+.corner-tl{top:-26px;left:-25px;transform:rotate(-13deg)}
+.corner-tr{top:-22px;right:-24px;transform:rotate(12deg)}
+.corner-bl{bottom:-26px;left:-22px;transform:rotate(9deg)}
+.corner-br{bottom:-25px;right:-22px;transform:rotate(-11deg)}
+/* Make the floating stickers readable instead of almost invisible, while keeping them decorative. */
+.kuromi-photo-sticker{opacity:.28;filter:drop-shadow(0 6px 9px rgba(0,0,0,.42));}
+.ks-one{left:1.5%;top:21%;width:clamp(66px,8vw,100px)}
+.ks-two{right:1.5%;top:39%;width:clamp(68px,8vw,104px)}
+.ks-three{left:2%;top:67%;width:clamp(64px,8vw,98px)}
+.ks-four{right:2%;top:82%;width:clamp(66px,8vw,100px)}
+.ks-five{left:45%;top:7%;width:clamp(48px,5vw,70px);opacity:.2}
+body.light .kuromi-photo-sticker{opacity:.23}
+@media(max-width:600px){
+ .scr-kuromi{width:58px}
+ .scrap-kuromi{width:58px}
+ .corner-tl{top:-18px;left:-13px}
+ .corner-tr{top:-18px;right:-13px}
+ .corner-bl{bottom:-18px;left:-13px}
+ .corner-br{bottom:-18px;right:-13px}
+ .kuromi-photo-sticker{opacity:.2}
+}
