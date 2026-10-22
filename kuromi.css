@@ -120,3 +120,35 @@ body.light .secondary{color:#281332;background:rgba(255,255,255,.8)}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
+/* Match the pre-birthday lock screen to the new dark Kuromi palette */
+.birthday-lock{
+ background:
+  radial-gradient(circle at 50% 10%,rgba(160,74,255,.22),transparent 36%),
+  radial-gradient(circle at 12% 82%,rgba(255,55,170,.14),transparent 30%),
+  linear-gradient(145deg,#08060d,#150d20 56%,#09070f);
+ color:#fff4ff;
+}
+.lock-orb-a{background:#a855f7}
+.lock-orb-b{background:#ff3ea5}
+.lock-sparkles,.lock-card h1 span,.lock-date{color:#ff67c4}
+.lock-card{
+ background:linear-gradient(145deg,rgba(31,17,48,.94),rgba(12,9,19,.94));
+ border-color:rgba(197,122,255,.22);
+ box-shadow:0 30px 90px rgba(0,0,0,.5),inset 0 1px rgba(255,255,255,.07);
+}
+.lock-icon{
+ background:linear-gradient(145deg,rgba(155,92,255,.24),rgba(255,79,184,.12));
+ border-color:rgba(255,79,184,.28);
+}
+.lock-eyebrow{color:#ff67c4}
+.lock-copy b{color:#ead7ff}
+.lock-count-wrap{border-color:rgba(255,79,184,.22);background:rgba(255,255,255,.035)}
+.lock-countdown{ text-shadow:0 0 24px rgba(197,112,255,.35) }
+.lock-time-card{border-color:rgba(205,151,255,.19);background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(143,73,211,.04))}
+.lock-time-card::before{background:radial-gradient(circle,rgba(255,79,184,.18),transparent 62%)}
+.lock-time-card strong{ text-shadow:0 0 24px rgba(197,112,255,.35) }
+.lock-time-sep{color:#ff67c4;text-shadow:0 0 14px rgba(255,79,184,.4)}
+.lock-divider{color:#ff67c4}
+.lock-divider i{background:linear-gradient(90deg,transparent,rgba(255,79,184,.45))}
+.lock-note{color:#c2a9dc}
+body.light .birthday-lock{background:radial-gradient(circle at 50% 10%,#f4c7e9,transparent 38%),linear-gradient(145deg,#f9f0ff,#eadbff);color:#281332}
