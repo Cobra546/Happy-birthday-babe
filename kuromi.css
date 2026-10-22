@@ -247,3 +247,17 @@ body.light .official-kuromi-link{color:#713b91}
  .memory-photo{height:125px}
 }
 body.light .scrapbook-page{background:linear-gradient(90deg,#fff9ff 1px,transparent 1px),linear-gradient(#fff9ff 1px,transparent 1px),linear-gradient(145deg,#f7e8ff,#fff0fa);background-size:22px 22px,22px 22px,auto}
+
+
+/* Floating official Kuromi-fan icon stickers across the page */
+.kuromi-photo-stickers{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.kuromi-photo-sticker{position:absolute;width:clamp(62px,8vw,112px);height:auto;aspect-ratio:1;object-fit:contain;border-radius:50%;opacity:.16;filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));animation:kuromiPhotoFloat 9s ease-in-out infinite}
+.ks-one{left:2.5%;top:19%;transform:rotate(-13deg);animation-delay:-2s}
+.ks-two{right:2%;top:35%;transform:rotate(12deg);animation-delay:-5s}
+.ks-three{left:4%;top:61%;transform:rotate(8deg);animation-delay:-1s}
+.ks-four{right:4%;top:76%;transform:rotate(-9deg);animation-delay:-6s}
+.ks-five{left:44%;top:7%;width:clamp(48px,5vw,74px);opacity:.10;animation-delay:-4s}
+@keyframes kuromiPhotoFloat{0%,100%{translate:0 0;rotate:-3deg}50%{translate:0 -12px;rotate:3deg}}
+body.light .kuromi-photo-sticker{opacity:.12}
+@media(max-width:600px){.kuromi-photo-sticker{width:58px;opacity:.12}.ks-one{left:-13px;top:18%}.ks-two{right:-15px;top:34%}.ks-three{left:-16px;top:62%}.ks-four{right:-15px;top:79%}.ks-five{left:43%;top:8%;width:46px}}
+@media(prefers-reduced-motion:reduce){.kuromi-photo-sticker{animation:none}}
