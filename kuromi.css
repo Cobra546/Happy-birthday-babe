@@ -1,0 +1,122 @@
+/* Classic Kuromi-inspired theme: black, violet, hot pink */
+:root{
+  --bg:#09070f;
+  --surface:rgba(23,15,35,.9);
+  --text:#fff4ff;
+  --muted:#b8a8c8;
+  --accent:#ff4fb8;
+  --accent2:#9b5cff;
+  --line:rgba(207,145,255,.2);
+  --shadow:0 22px 70px rgba(0,0,0,.55);
+}
+body{
+  background:
+    radial-gradient(ellipse at 15% 12%,rgba(139,63,255,.23),transparent 35%),
+    radial-gradient(ellipse at 90% 68%,rgba(255,55,170,.13),transparent 32%),
+    #09070f;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.16;
+  background-image:radial-gradient(circle,#f8d9ff 1px,transparent 1.5px);
+  background-size:67px 67px;
+  mask-image:linear-gradient(to bottom,#000,transparent 90%);
+}
+main,.topbar,.toast,canvas{position:relative;z-index:1}
+.topbar{
+  background:linear-gradient(to bottom,rgba(9,7,15,.96),rgba(9,7,15,.55),transparent);
+  border-bottom:1px solid rgba(194,115,255,.08);
+}
+.brand{color:#d5b5f3}
+.brand::before{content:"☠ ";color:#ff4fb8}
+.icon-btn{
+  border-color:rgba(255,79,184,.35);
+  box-shadow:0 0 20px rgba(155,92,255,.13);
+}
+.eyebrow{color:#ff67c4}
+.hero h1 span,h2 span{
+  background:linear-gradient(115deg,#ff76cb 5%,#c68bff 52%,#8c66ff 100%);
+  -webkit-background-clip:text;color:transparent;
+}
+.hero h1{ text-shadow:0 0 38px rgba(155,92,255,.14) }
+.orb-a{background:#a855f7;opacity:.22}
+.orb-b{background:#ff3ea5;opacity:.18}
+.primary{
+  background:linear-gradient(120deg,#ff3ea5,#a34bff 70%,#7248e8);
+  box-shadow:0 12px 34px rgba(177,65,255,.24),inset 0 1px rgba(255,255,255,.2);
+}
+.secondary{
+  background:linear-gradient(145deg,rgba(43,24,64,.95),rgba(22,14,34,.96));
+  border-color:rgba(199,135,255,.25);
+}
+.count-card,.letter-card,.game-box,.wish-card{
+  border-color:rgba(197,122,255,.24);
+  background:linear-gradient(145deg,rgba(28,17,43,.94),rgba(13,10,22,.92));
+  box-shadow:0 20px 70px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.035);
+}
+.romantic-countdown{
+  background:linear-gradient(145deg,rgba(43,19,57,.94),rgba(17,12,29,.92));
+  border-color:rgba(255,79,184,.28);
+}
+.count-glow{background:#b44cff;opacity:.18}
+.count-heading{color:#ead7ff}
+.count-heading b,.count-units i,.count-note::before,.count-note::after{color:#ff5cbd}
+.count-unit{
+  border-color:rgba(205,151,255,.16);
+  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(143,73,211,.045));
+}
+.count-unit strong{color:#fff5ff;text-shadow:0 0 22px rgba(197,112,255,.35)}
+.count-unit small{color:#bba4d4}
+.count-note{color:#c2a9dc}
+.memory-card{
+  background:linear-gradient(145deg,#fff0fb,#e7d8ff);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 3px rgba(176,91,255,.1);
+}
+.memory-title{color:#3a2148}
+.memory-card span{color:#5b326b}
+.memory-photo{outline:1px solid rgba(255,79,184,.25)}
+.heart-catcher{border-color:rgba(255,79,184,.24)}
+.game-hint{color:#d6b5f4}
+.falling-heart{filter:drop-shadow(0 0 8px rgba(255,79,184,.35))}
+.basket{filter:drop-shadow(0 0 12px rgba(175,91,255,.35))}
+.letter-card{color:#f4e5ff}
+.signature{color:#ff67c4}
+.wish-card textarea:focus{border-color:#ff67c4;box-shadow:0 0 0 3px rgba(255,79,184,.08)}
+.wish-status{color:#ff78ca}
+.finale{
+  background:radial-gradient(circle at center,rgba(160,74,255,.17),transparent 55%),
+             radial-gradient(circle at 80% 25%,rgba(255,60,170,.08),transparent 30%);
+}
+.fireworks{color:#ff67c4;filter:drop-shadow(0 0 12px rgba(168,78,255,.5))}
+.toast{
+  background:linear-gradient(120deg,#28153b,#401a45);
+  border:1px solid rgba(255,100,200,.25);
+  box-shadow:0 10px 35px #0007;
+}
+body.light{
+  --bg:#f5eaff;--surface:rgba(255,247,255,.9);--text:#281332;--muted:#756080;--line:rgba(105,51,145,.18);
+  background:radial-gradient(circle at 15% 10%,#f4c7e9,transparent 35%),linear-gradient(145deg,#f9f0ff,#eadbff);
+}
+body.light .topbar{background:linear-gradient(to bottom,rgba(249,240,255,.96),transparent)}
+body.light .count-unit strong{color:#3c1b4e}
+body.light .count-unit small{color:#795b8e}
+body.light .count-heading{color:#67427a}
+body.light .count-note{color:#7d5b91}
+body.light .letter-card{color:#42284e}
+body.light .wish-card textarea{background:#fffaff;color:#281332}
+body.light .secondary{color:#281332;background:rgba(255,255,255,.8)}
+/* Decorative floating bats, skulls and sparkles */
+.kuromi-decor{
+  position:fixed;z-index:0;pointer-events:none;opacity:.18;
+  color:#ff61c4;text-shadow:0 0 18px rgba(177,78,255,.45);
+  font-size:clamp(17px,3vw,27px);animation:kuromiDrift 7s ease-in-out infinite;
+}
+.kuromi-decor.d1{top:24%;left:4%;animation-delay:-1s}
+.kuromi-decor.d2{top:62%;right:5%;color:#bd8aff;animation-delay:-3s}
+.kuromi-decor.d3{top:82%;left:8%;animation-delay:-5s}
+.kuromi-decor.d4{top:13%;right:10%;color:#bd8aff;animation-delay:-2s}
+@keyframes kuromiDrift{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-13px) rotate(7deg)}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
