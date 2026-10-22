@@ -152,3 +152,31 @@ body.light .secondary{color:#281332;background:rgba(255,255,255,.8)}
 .lock-divider i{background:linear-gradient(90deg,transparent,rgba(255,79,184,.45))}
 .lock-note{color:#c2a9dc}
 body.light .birthday-lock{background:radial-gradient(circle at 50% 10%,#f4c7e9,transparent 38%),linear-gradient(145deg,#f9f0ff,#eadbff);color:#281332}
+
+
+/* Original Kuromi-inspired charm and official Sanrio link */
+.kuromi-charm{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  width:max-content;max-width:calc(100% - 28px);margin:0 auto 20px;padding:10px 17px;
+  border:1px solid rgba(255,79,184,.38);border-radius:999px;
+  background:linear-gradient(120deg,rgba(30,17,46,.92),rgba(65,23,69,.72));
+  box-shadow:0 0 28px rgba(155,92,255,.15),inset 0 1px rgba(255,255,255,.06);
+  color:#f6d9ff;letter-spacing:.12em;font-size:clamp(9px,2.5vw,11px);font-weight:700;
+}
+.charm-skull{font-size:22px;color:#ff67c4;text-shadow:0 0 12px rgba(255,79,184,.55)}
+.charm-heart{font-size:22px;color:#bd8aff}
+.official-kuromi-link{
+  display:block;width:fit-content;max-width:calc(100% - 32px);margin:16px auto 0;
+  color:#e4c8ff;font-size:13px;text-decoration:none;
+  border-bottom:1px dashed rgba(255,103,196,.55);padding-bottom:4px;
+  transition:color .2s ease,text-shadow .2s ease;
+}
+.official-kuromi-link:hover,.official-kuromi-link:focus-visible{
+  color:#ff8ad0;text-shadow:0 0 14px rgba(255,79,184,.35);outline:none;
+}
+body.light .kuromi-charm{
+  background:linear-gradient(120deg,rgba(255,250,255,.96),rgba(245,220,255,.9));
+  color:#4c245e;border-color:rgba(171,74,205,.32);
+}
+body.light .official-kuromi-link{color:#713b91}
+@media(max-width:420px){.kuromi-charm{gap:8px;padding:9px 12px}.charm-skull,.charm-heart{font-size:19px}}
