@@ -288,3 +288,8 @@ body.light .kuromi-photo-sticker{opacity:.23}
  .corner-br{bottom:-18px;right:-13px}
  .kuromi-photo-sticker{opacity:.2}
 }
+
+/* User-uploaded Kuromi PNG stickers */
+.scrap-kuromi{width:clamp(70px,11vw,118px);max-height:140px;object-fit:contain;filter:drop-shadow(0 6px 6px rgba(0,0,0,.4))}
+.kuromi-photo-sticker{width:clamp(74px,9vw,112px);height:auto;object-fit:contain;opacity:.92;filter:drop-shadow(0 6px 9px rgba(0,0,0,.35))}
+@media(max-width:600px){.kuromi-photo-sticker{width:clamp(56px,15vw,82px);opacity:.82}.scrap-kuromi{width:58px;max-height:90px}}
