@@ -1,39 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#09070f">
-<meta name="description" content="A birthday surprise for Keeno.">
-<title>Happy Birthday Keeno ❤️</title>
-<style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#241333 0,#100b19 48%,#07060b 100%);color:#fff;font-family:Inter,system-ui,sans-serif;display:grid;place-items:center;padding:24px}.lock{width:min(100%,520px);text-align:center;padding:32px 22px;border:1px solid #ffffff20;border-radius:28px;background:#ffffff08;box-shadow:0 20px 80px #0008}.heart{font-size:48px;filter:drop-shadow(0 0 20px #c45cff)}h1{font-family:Georgia,serif;font-size:clamp(30px,7vw,44px);margin:14px 0;color:#f2d8ff}p{color:#d3c4df;line-height:1.65}.count{font-size:clamp(28px,8vw,42px);font-variant-numeric:tabular-nums;letter-spacing:2px;margin:22px 0;color:#fff}.hint{font-size:13px;color:#a99ab7}button{border:0;border-radius:999px;padding:13px 20px;background:linear-gradient(135deg,#d6a5ff,#8f54c6);color:#160c20;font-weight:700;font-size:15px;cursor:pointer;margin:8px}button:disabled{opacity:.5}.status{min-height:24px;color:#e3c8ff;font-size:14px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#09070f">
+  <meta name="description" content="A cinematic interactive birthday experience for Keeno.">
+  <title>Happy Birthday Keeno ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20261005b">
+  <link rel="stylesheet" href="kuromi.css?v=20261023a">
 </head>
-<body>
-<main class="lock">
-<div class="heart">💜</div>
-<h1>A little surprise is waiting</h1>
-<p id="message">This birthday experience opens on June 2. The countdown is just for now… ✨</p>
-<div class="count" id="countdown">Loading…</div>
-<p class="hint">Private preview is available to the site owner.</p>
-<button id="ownerLogin" hidden>Sign in with GitHub to preview</button>
-<div class="status" id="status" role="status"></div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-(() => {
- const URL='https://bhtyestavehwaymfozxw.supabase.co';
- const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJodHllc3RhdmVod2F5bWZvenh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU4NDkwODksImV4cCI6MjEwMTQyNTA4OX0.4-8U1fe5LQVTsuFa1kgc8A1PQeBQrh_UTibZsmApPrQ';
- const client=window.supabase.createClient(URL,KEY);
- const endpoint=URL+'/functions/v1/birthday-gate';
- const $=id=>document.getElementById(id);
- const nextBirthday=()=>{const now=new Date();const y=now.getFullYear();const d=new Date(y,5,2);if(now>=d)d.setFullYear(y+1);return d};
- function tick(){const now=new Date(),target=nextBirthday(),ms=Math.max(0,target-now);const days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000),secs=Math.floor(ms%60000/1000);$('countdown').textContent=days+'d '+String(hours).padStart(2,'0')+':'+String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0')}
- async function loadSite(token){$('status').textContent='Checking secure access…';try{const headers={'Content-Type':'application/json','apikey':KEY};if(token)headers.Authorization='Bearer '+token;const res=await fetch(endpoint,{method:'POST',headers,body:'{}',cache:'no-store'});if(res.ok){const html=await res.text();document.open();document.write(html);document.close();return true}if(res.status===403){$('status').textContent='Only the site owner can preview before June 2.';return false}throw new Error('Temporary access check failed ('+res.status+').')}catch(e){$('status').textContent=e.message||'Could not connect. Please try again.';return false}}
- $('ownerLogin').addEventListener('click',async()=>{ $('ownerLogin').disabled=true;$('status').textContent='Opening GitHub sign-in…';const {error}=await client.auth.signInWithOAuth({provider:'github',options:{redirectTo:location.origin+location.pathname}});if(error){$('status').textContent='GitHub sign-in failed: '+error.message;$('ownerLogin').disabled=false}});
- (async()=>{tick();setInterval(tick,1000);const {data:{session}}=await client.auth.getSession();if(session){await loadSite(session.access_token);return}const loaded=await loadSite();if(!loaded){$('ownerLogin').hidden=false}})();
-})();
-</script>
+<body class="dark">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="kuromi-decor d1" aria-hidden="true">☠</div><div class="kuromi-decor d2" aria-hidden="true">✦</div><div class="kuromi-decor d3" aria-hidden="true">♡</div><div class="kuromi-decor d4" aria-hidden="true">☾</div>
+  <div class="kuromi-photo-stickers" aria-hidden="true">
+    <img class="kuromi-photo-sticker ks-one" src="file_00000000f6148211bee1d5c84bb1cd5b.png" alt="" loading="lazy">
+    <img class="kuromi-photo-sticker ks-two" src="file_00000000312c82119370cad7d37f4dcd.png" alt="" loading="lazy">
+    <img class="kuromi-photo-sticker ks-three" src="file_0000000019488211ac1dfc3ed5e1259b.png" alt="" loading="lazy">
+    <img class="kuromi-photo-sticker ks-four" src="file_00000000e9948211983ff8781d294855.png" alt="" loading="lazy">
+    <img class="kuromi-photo-sticker ks-five" src="file_00000000312c82119370cad7d37f4dcd.png" alt="" loading="lazy">
+  </div>
+  <header class="topbar">
+    <div class="brand">☠ Keeno's Kuromi Birthday Story</div>
+    <button id="themeToggle" class="icon-btn" aria-label="Toggle light and dark theme">☀️</button>
+  </header>
+
+  <main>
+    <section class="hero section active" id="hero">
+      <div class="orb orb-a"></div><div class="orb orb-b"></div>
+      <p class="eyebrow">A little Kuromi surprise for Keeno</p>
+      <h1>Happy<br><span>Birthday, Keeno</span> ❤️</h1>
+      <div class="kuromi-charm" aria-label="Original Kuromi-inspired decoration"><span class="charm-skull">☠</span><span class="charm-label">MISCHIEF · MAGIC · MEMORIES</span><span class="charm-heart">♡</span></div>
+      <p class="hero-copy">A little mischievous, a little magical, and made just for you. Welcome to your Kuromi birthday story. 🖤💜</p>
+      <button class="primary" id="startBtn">Open Your Surprise <span>→</span></button>
+      <div class="scroll-hint">tap to begin · ✦</div>
+    </section>
+
+    <section class="section" id="intro">
+      <p class="eyebrow">Chapter One</p>
+      <h2>Today is your day, Keeno 🎂</h2>
+      <p class="body-copy">Another year, another chapter, and a whole lot of reasons to smile.</p>
+      <div class="count-card romantic-countdown">
+        <div class="count-glow" aria-hidden="true"></div>
+        <div class="count-heading"><span>Until your special day</span><b>♡</b></div>
+        <div class="count-units" id="countdown" aria-label="Birthday countdown">
+          <div class="count-unit"><strong data-unit="days">00</strong><small>Days</small></div>
+          <i>:</i>
+          <div class="count-unit"><strong data-unit="hours">00</strong><small>Hours</small></div>
+          <i>:</i>
+          <div class="count-unit"><strong data-unit="minutes">00</strong><small>Minutes</small></div>
+          <i>:</i>
+          <div class="count-unit"><strong data-unit="seconds">00</strong><small>Seconds</small></div>
+        </div>
+        <div class="count-note">counting every little moment ✦</div>
+      </div>
+      <button class="secondary next-btn" data-next="memories">Continue ✨</button>
+    </section>
+
+    <section class="section memories-section" id="memories">
+      <div class="memory-intro" id="memoryIntro" aria-hidden="true">
+        <div class="memory-intro-text">4 favorite days of my life</div>
+      </div>
+      <div class="memory-content scrapbook-page" id="memoryContent">
+        <div class="scrapbook-kuromi-corners" aria-hidden="true">
+          <img class="scrap-kuromi corner-tl" src="file_00000000f6148211bee1d5c84bb1cd5b.png" alt="" loading="lazy">
+          <img class="scrap-kuromi corner-tr" src="file_00000000312c82119370cad7d37f4dcd.png" alt="" loading="lazy">
+          <img class="scrap-kuromi corner-bl" src="file_0000000019488211ac1dfc3ed5e1259b.png" alt="" loading="lazy">
+          <img class="scrap-kuromi corner-br" src="file_00000000e9948211983ff8781d294855.png" alt="" loading="lazy">
+        </div>
+        <div class="scrapbook-stickers" aria-hidden="true"><span class="sticker kuromi-sticker">☠️<small>KUROMI</small></span><span class="sticker bat-sticker">🦇</span><span class="sticker bow-sticker">🎀</span><span class="sticker heart-sticker">💜</span><span class="sticker sparkle-sticker">✦ ✧</span></div>
+        <p class="eyebrow">Chapter Two · Scrapbook</p>
+        <h2>Little moments 📸</h2>
+        <p class="body-copy">Four days that became some of the most special dates in my life. <span class="scrapbook-note">♡ cute · chaotic · memories ♡</span></p>
+        <div class="memory-grid">
+          <div class="memory-card">
+            <div class="memory-title">the day you born</div>
+            <div class="memory-photo"><img src="memory-1.jpg" alt="A childhood memory" loading="lazy"></div>
+            <span>02/06/2011</span>
+          </div>
+          <div class="memory-card">
+            <div class="memory-title">the day you met me</div>
+            <div class="memory-photo"><img src="file_00000000fbac821193691fde8db46693.png" alt="A special memory" loading="lazy"></div>
+            <span>05/04/2019</span>
+          </div>
+          <div class="memory-card">
+            <div class="memory-title">the day you talk me</div>
+            <div class="memory-photo"><img src="memory-3.jpg" alt="A special memory" loading="lazy"></div>
+            <span>11/02/2025</span>
+          </div>
+          <div class="memory-card">
+            <div class="memory-title">the day you come into my life</div>
+            <div class="memory-photo"><img src="memory-4.jpg" alt="A special memory" loading="lazy"></div>
+            <span>27/05/2025</span>
+          </div>
+        </div>
+        <button class="secondary next-btn" data-next="game">Next chapter →</button>
+      </div>
+    </section>
+
+    <section class="section" id="game">
+      <p class="eyebrow">Chapter Three</p>
+      <h2>Catch Kuromi 🎀</h2>
+      <p class="body-copy">Move the basket left and right to catch 10 falling Kuromis and unlock Keeno's final surprise. 🎀</p>
+      <div class="game-box heart-catcher" id="gameBox"><div class="game-score">Kuromis caught: <b id="score">0</b>/10</div><div class="game-hint" id="gameHint">Move the basket ← →</div><div class="heart-field" id="heartField" aria-label="Catch falling Kuromi images"></div><div class="basket" id="basket" role="slider" tabindex="0" aria-label="Kuromi catcher basket" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">🧺</div><button id="gameStart" class="primary small">Start Game</button></div>
+      <button class="secondary next-btn hidden" id="gameNext" data-next="letter">Unlock the letter 💌</button>
+    </section>
+
+    <section class="section" id="letter">
+      <p class="eyebrow">Chapter Four</p>
+      <h2>A little message for Keeno 💌</h2>
+      <div class="letter-card"><div id="typewriter"></div><span class="signature">— From someone who wishes you the best ✨</span></div>
+      <button class="secondary next-btn" data-next="wishes">One last surprise →</button>
+    </section>
+
+    <section class="section" id="wishes">
+      <p class="eyebrow">Final Chapter</p>
+      <h2>Make a wish, Keeno ⭐</h2>
+      <p class="body-copy">Close your eyes, make a wish, then write it below. Your wish will be saved privately for the birthday surprise. 💌</p>
+      <div class="wish-card">
+        <textarea id="wishInput" maxlength="1000" placeholder="Write your birthday wish here..." aria-label="Birthday wish"></textarea>
+        <div class="wish-meta"><span>Max 1000 characters</span><span id="wishCount">0/1000</span></div>
+        <button class="primary" id="wishBtn">💌 Send My Wish</button>
+        <p class="wish-status" id="wishStatus" role="status"></p>
+      </div>
+      <button class="primary" id="finalBtn">🎆 Reveal the Finale</button>
+    </section>
+
+    <section class="section finale" id="finale">
+      <div class="fireworks" aria-hidden="true">✦　✧　✦</div>
+      <p class="eyebrow">The end… or a new beginning</p>
+      <h2>HAPPY<br><span>BIRTHDAY, KEENO!</span> 🎉</h2>
+      <p class="body-copy">May this new chapter be full of laughter, beautiful memories, and countless reasons to smile.</p>
+      <div class="card-actions">
+        <button class="primary" id="downloadBtn">📥 Download Card</button>
+        <button class="secondary" id="shareBtn">🔗 Share Birthday Card</button>
+      </div>
+      <button class="text-btn" id="replayBtn">↻ Replay the story</button>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <canvas id="cardCanvas" width="1080" height="1350" hidden></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js?v=20261023b"></script>
 </body>
 </html>
