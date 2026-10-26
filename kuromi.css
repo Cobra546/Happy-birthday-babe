@@ -306,3 +306,22 @@ body.light .kuromi-photo-sticker{opacity:.23}
 @keyframes finaleBalloonRise{0%{transform:translate3d(0,0,0) rotate(-8deg);opacity:0}10%{opacity:.95}50%{transform:translate3d(var(--drift),-55vh,0) rotate(8deg)}100%{transform:translate3d(calc(var(--drift)*-.55),-125vh,0) rotate(-6deg);opacity:0}}
 @keyframes finaleStickerRise{0%{transform:translate3d(0,0,0) rotate(var(--tilt)) scale(.8);opacity:0}12%{opacity:1}50%{transform:translate3d(20px,-55vh,0) rotate(calc(var(--tilt) * -1)) scale(1)}100%{transform:translate3d(-15px,-125vh,0) rotate(var(--tilt)) scale(.9);opacity:0}}
 @media(prefers-reduced-motion:reduce){.finale-balloon,.finale-kuromi-sticker{animation-duration:18s}}
+
+
+/* Extra user-uploaded Kuromi stickers, placed as scrapbook accents */
+.corner-extra-one{top:23%;left:-28px;width:clamp(48px,7vw,76px);transform:rotate(-9deg)}
+.corner-extra-two{top:42%;right:-24px;width:clamp(46px,7vw,72px);transform:rotate(8deg)}
+.corner-extra-three{bottom:22%;left:8px;width:clamp(42px,6vw,64px);transform:rotate(12deg)}
+.corner-extra-four{bottom:8%;right:7px;width:clamp(50px,7vw,78px);transform:rotate(-7deg)}
+.ks-six{right:5%;top:52%;width:clamp(60px,7vw,90px);animation-delay:-3s}
+.ks-seven{left:7%;top:39%;width:clamp(62px,7vw,92px);animation-delay:-6s}
+.ks-eight{right:9%;top:13%;width:clamp(60px,7vw,92px);animation-delay:-1.5s}
+@media(max-width:600px){
+ .corner-extra-one{top:24%;left:-12px;width:44px}
+ .corner-extra-two{top:44%;right:-10px;width:42px}
+ .corner-extra-three{bottom:22%;left:0;width:38px}
+ .corner-extra-four{bottom:8%;right:0;width:46px}
+ .ks-six{right:-14px;top:52%;width:58px}
+ .ks-seven{left:-12px;top:40%;width:58px}
+ .ks-eight{right:-10px;top:13%;width:56px}
+}
